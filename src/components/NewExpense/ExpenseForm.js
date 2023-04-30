@@ -7,13 +7,13 @@ export default function ExpenseForm(props) {
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
 
-    const titleChangeHandler = (event) => { 
+    const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
-     };
+    };
     const amountChangeHandler = (event) => {
         setEnteredAmount(event.target.value);
-     };
-    const dateChangeHandler = (event) => { 
+    };
+    const dateChangeHandler = (event) => {
         setEnteredDate(event.target.value);
     };
 
@@ -21,9 +21,9 @@ export default function ExpenseForm(props) {
         event.preventDefault(); // prevent the default behavior of the form sending a request and reloading the page
         const expenseData = {
             title: enteredTitle,
-            amount: enteredAmount,
-            date: new Date(enteredDate)
-        };
+            amount: +enteredAmount,
+            date: new Date(enteredDate),
+          };
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
@@ -51,6 +51,7 @@ export default function ExpenseForm(props) {
                 </div>
 
                 <div className='new-expense__actions'>
+                    <button type='button' onClick={props.onCancel}>Cancel</button>
                     <button type='submit'>Add Expense</button>
                 </div>
 
